@@ -16,11 +16,25 @@
   <h1 id="headline">Angular Address Book</h1>
 
   <div ng-controller="ContactController as contact">
+    <p>New Contact Form</p>
+    <form class="contact-form" ng-submit="contact.addContact();">
+      <input type="text" placeholder="New Contact Name" ng-model="contact.newContactName">
+      <input type="email" placeholder="New Contact Email" ng-model="contact.newContactEmail">
+      <button type="submit">Add New Contact</button>
+    </form>
     <ul class="flex-container">
-      <li class="contact-summary" ng-repeat="contact in contact.list">
-          <h2>{{ contact.name }}</h2>
-          <p>{{ contact.email }}</p>
-          <button>Details</button><button>Delete</button>
+      <li class="contact-summary" ng-repeat="item in contact.list">
+          <h2>{{ item.name }}</h2>
+          <p>{{ item.email }}</p>
+          <div ng-show="showDetails">
+            <p> {{ item.address.street }} </p>
+            <p> {{ item.address.city }}, {{ item.address.zipcode }} </p>
+            <p> {{ item.phone }} </p>
+            <p> {{ item.company.name }} </p>
+          </div>
+          <button ng-show="!showDetails" ng-click="showDetails = true">Show Details</button>
+          <button ng-show="showDetails" ng-click="showDetails = false">Hide Details</button>
+          <button ng-click="contact.removeContact(item, $index);">Delete</button>
       </li>
     </ul>
   </div>

@@ -2,9 +2,12 @@ function ContactService ($http) {
 
   var API = '//jsonplaceholder.typicode.com/users/';
 
-  function create () {
-
+  function create (contact) {
+    return $http.post(API, contact).then(function(response) {
+      return response.data;
+    })
   };
+
   function retrieve () {
     return $http.get(API).then(function(response) {
         return response.data;
@@ -15,8 +18,10 @@ function ContactService ($http) {
 
   };
 
-  function remove () {
-
+  function remove (contact) {
+    return $http.delete(API + contact.id).then(function (response) {
+      return response.data;
+    })
   };
 
   return {
