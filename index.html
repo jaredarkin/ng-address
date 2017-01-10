@@ -12,10 +12,14 @@
 </head>
 <body>
 
-  {{ 2 + 2 }}
-
   <div ng-controller="ContactController as contact">
-    <p> {{ contact.message }} </p>
+    <ul>
+      <li ng-repeat="contact in contact.list">
+        <h1>{{ contact.name }}</h1>
+        <p>{{ contact.address.city }}</p>
+        <p>{{ contact.email }}</p>
+      </li>
+    </ul>
   </div>
 
 </body>
