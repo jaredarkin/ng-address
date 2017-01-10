@@ -13,12 +13,14 @@
 </head>
 <body>
 
+  <h1 id="headline">Angular Address Book</h1>
+
   <div ng-controller="ContactController as contact">
-    <ul>
-      <li ng-repeat="contact in contact.list">
-        <h1>{{ contact.name }}</h1>
-        <p>{{ contact.address.city }}</p>
-        <p>{{ contact.email }}</p>
+    <ul class="flex-container">
+      <li class="contact-summary" ng-repeat="contact in contact.list">
+          <h2>{{ contact.name }}</h2>
+          <p>{{ contact.email }}</p>
+          <button>Details</button><button>Delete</button>
       </li>
     </ul>
   </div>
